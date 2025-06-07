@@ -53,3 +53,28 @@ production:
   database: furima_42123_production
   username: furima_42123
   password: <%= ENV["FURIMA_42123_DATABASE_PASSWORD"] %>
+
+default: &default
+  encoding: utf8
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+
+development:
+  <<: *default
+  adapter: mysql2
+  username: root
+  password:
+  host: localhost
+  database: furima-42123_development
+
+test:
+  <<: *default
+  adapter: mysql2
+  username: root
+  password:
+  host: localhost
+  database: furima-42123_test
+
+production:
+  <<: *default
+  adapter: postgresql
+  url: <%= ENV['DATABASE_URL'] %>
