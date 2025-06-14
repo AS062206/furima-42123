@@ -4,7 +4,7 @@
 |----------------------|-----------|---------------------------|--------------------|
 | email                | string    | null: false, unique: true | メールアドレス     |
 | encrypted_password   | string    | null: false               | 暗号化パスワード   |
-| nickname             | string    | null: false, unique: true | ニックネーム       |
+| nickname             | string    | null: false               | ニックネーム       |
 | last_name            | string    | null: false               | 姓                 |
 | first_name           | string    | null: false               | 名                 |
 | last_name_kana       | string    | null: false               | 姓カナ             |
@@ -36,8 +36,8 @@
 
 ### Association
 
-- belongs_to :users
-- belongs_to :purchases
+- belongs_to :user
+- has_one :purchase
 
 ---
 
@@ -50,9 +50,9 @@
 
 ### Association
 
-- belongs_to :users
-- belongs_to :items
-- belongs_to :addresses
+- belongs_to :user
+- belongs_to :item
+- has_one :address
 
 ---
 
@@ -72,4 +72,4 @@
 
 ### Association
 
-- belongs_to :purchases
+- belongs_to :purchase
