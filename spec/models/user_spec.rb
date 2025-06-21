@@ -99,6 +99,11 @@ require 'pry'
         @user.valid?
         expect(@user.errors.full_messages).to include("Last name is invalid")
       end
+      it '名前に半角文字が含まれていると登録できない' do
+        @user.first_name = 'Yamada'
+        @user.valid?
+        expect(@user.errors.full_messages).to include("First name is invalid")
+      end
       # '名前カナ（全角）のバリデーションテスト'
       it '名字カナが空では登録できない' do
         @user.last_name_kana = nil
@@ -118,6 +123,15 @@ require 'pry'
         expect(@user.errors.full_messages).to include("Last name kana is invalid")
         @user.last_name_kana = 'yamada'
         expect(@user.errors.full_messages).to include("Last name kana is invalid")
+      end
+      it '名前カナに全角ひらがな、漢字、半角文字が含まれていると登録できない' do
+        @user.first_name_kana = 'やまだ'
+        @user.valid?
+        expect(@user.errors.full_messages).to include("First name kana is invalid")
+        @user.first_name_kana = '山田'
+        expect(@user.errors.full_messages).to include("First name kana is invalid")
+        @user.first_name_kana = 'yamada'
+        expect(@user.errors.full_messages).to include("First name kana is invalid")
       end
       # '生年月日のバリデーションテスト'
       it '生年月日が空では登録できない' do

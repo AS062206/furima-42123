@@ -5,9 +5,9 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
          
 
-  # Association
-  has_many :items
-  has_many :purchases
+  # # Association
+  # has_many :items
+  # has_many :purchases
 
   # Validations
   validates :nickname, presence: true
