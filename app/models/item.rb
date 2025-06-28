@@ -22,7 +22,7 @@ class Item < ApplicationRecord
     message: "は300円から9,999,999円の間で入力してください"
   }
 
-  with_options numericality: { other_than: 1, message: "を選択してください" } do
+  with_options numericality: { other_than: 1, message: "can't be blank" } do
     validates :category_id
     validates :condition_id
     validates :shipping_fee_id

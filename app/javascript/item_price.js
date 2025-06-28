@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
   const priceInput = document.getElementById('item-price')
   const commissionDisplay = document.getElementById('add-tax-price')
+  const profitDisplay = document.getElementById('profit')
 
   priceInput.addEventListener('input', () => {
     const price = parseInt(priceInput.value, 10)
