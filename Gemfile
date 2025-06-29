@@ -74,12 +74,15 @@ group :test do
   gem "selenium-webdriver"
 end
 
-group :development do
-  gem 'rubocop', '1.71.2', require: false
-end
-
 group :production do
   gem 'pg'
 end
 
 gem 'devise'
+gem 'mini_magick'
+gem 'image_processing', '~> 1.2'
+gem 'active_hash'
+
+gem 'rspec-rails'
+gem 'factory_bot_rails'
+gem 'faker'
