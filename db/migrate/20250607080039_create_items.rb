@@ -1,5 +1,6 @@
 class CreateItems < ActiveRecord::Migration[7.1]
   def change
+<<<<<<< Updated upstream
     create_table :items do |t|
       t.string :name, null: false
       t.text :description, null: false
@@ -11,6 +12,9 @@ class CreateItems < ActiveRecord::Migration[7.1]
       t.integer :price, null: false
       t.references :user, null: false, foreign_key: true
       t.timestamps
+=======
+    
+>>>>>>> Stashed changes
     end
   end
 end
