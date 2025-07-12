@@ -28,7 +28,10 @@ class ItemsController < ApplicationController
       @shipping_durations = ShippingDuration.all
       render :new, status: :unprocessable_entity
     end
+  end
 
+  def show
+    @item = Item.find(params[:id])
   end
 
   private
