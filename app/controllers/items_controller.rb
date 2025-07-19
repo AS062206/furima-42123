@@ -36,10 +36,6 @@ class ItemsController < ApplicationController
   end
 
   def edit
-    unless current_user == @item.user
-      redirect_to root_path
-    end
-
     @categories = Category.all
     @conditions = Condition.all
     @shipping_fees = ShippingFee.all
@@ -48,10 +44,6 @@ class ItemsController < ApplicationController
   end
 
   def update
-    unless current_user == @item.user
-      redirect_to root_path
-    end
-
     if @item.update(item_params)
       redirect_to item_path(@item)
     else
