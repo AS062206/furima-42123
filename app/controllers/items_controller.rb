@@ -1,6 +1,7 @@
 class ItemsController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :create, :edit, :update]
-  before_action :set_item, only: [:show, :edit, :update]
+  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
+  before_action :set_item, only: [:show, :edit, :update, :destroy]
+  before_action :redirect_unless_owner, only: [:edit, :update, :destroy]
 
   def index
     @items = Item.order(created_at: :desc)
@@ -35,10 +36,6 @@ class ItemsController < ApplicationController
   end
 
   def edit
-    unless current_user == @item.user
-      redirect_to root_path
-    end
-
     @categories = Category.all
     @conditions = Condition.all
     @shipping_fees = ShippingFee.all
@@ -47,10 +44,6 @@ class ItemsController < ApplicationController
   end
 
   def update
-    unless current_user == @item.user
-      redirect_to root_path
-    end
-
     if @item.update(item_params)
       redirect_to item_path(@item)
     else
@@ -63,10 +56,24 @@ class ItemsController < ApplicationController
     end
   end
 
+  def destroy
+    if @item.destroy
+      redirect_to root_path
+    else
+      redirect_to item_path(@item)
+    end
+  end
+
   private
 
   def set_item
     @item = Item.find(params[:id])
+  end
+
+  def redirect_unless_owner
+    if current_user != @item.user
+      redirect_to root_path
+    end
   end
 
   def item_params
