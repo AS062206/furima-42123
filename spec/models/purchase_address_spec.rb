@@ -4,9 +4,6 @@ RSpec.describe PurchaseAddress, type: :form do
   before do
     @user = FactoryBot.create(:user)
     @item = FactoryBot.create(:item, user: FactoryBot.create(:user))
-  end
-
-  before do
     allow(Payjp::Charge).to receive(:create).and_return(double('charge', id: 'ch_test_id'))
   end
 
