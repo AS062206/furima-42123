@@ -71,7 +71,7 @@ class ItemsController < ApplicationController
   end
 
   def redirect_unless_owner
-    if current_user != @item.user
+    if current_user != @item.user || (current_user == @item.user && @item.purchase.present?)
       redirect_to root_path
     end
   end
