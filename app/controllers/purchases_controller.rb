@@ -4,12 +4,14 @@ class PurchasesController < ApplicationController
   before_action :redirect_if_item_purchased_or_seller, only: [:index, :create]
 
   def index
+    gon.public_key = ENV['PAYJP_PUBLIC_KEY']
     @purchase_address = PurchaseAddress.new
   end
 
   def create
+    gon.public_key = ENV['PAYJP_PUBLIC_KEY']
     @purchase_address = PurchaseAddress.new(purchase_address_params)
-    if @purchase_address.valid?
+    if @purchase_address.save
       redirect_to root_path
     else
       render :index
