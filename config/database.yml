@@ -48,11 +48,11 @@ test:
 # Read https://guides.rubyonrails.org/configuring.html#configuring-a-database
 # for a full overview on how database connection configuration can be specified.
 #
-production:
-  <<: *default
-  database: furima_42123_production
-  username: furima_42123
-  password: <%= ENV["FURIMA_42123_DATABASE_PASSWORD"] %>
+# production:
+#   <<: *default
+#   database: furima_42123_production
+#   username: furima_42123
+#   password: <%= ENV["FURIMA_42123_DATABASE_PASSWORD"] %>
 
 default: &default
   encoding: utf8
