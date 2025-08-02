@@ -7,7 +7,7 @@ class User < ApplicationRecord
 
   # Association
   has_many :items
-  # has_many :purchases
+  has_many :purchases
 
   # Validations
   validates :nickname, presence: true
